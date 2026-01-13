@@ -58,7 +58,145 @@ function renderCharacterList(charArray, targetId) {
 renderCharacterList(characters,"function-list");
 
 // 4. Write a function that accepts two parameters: an array of character objects and a numeric age threshold. Inside the function, filter the array to include only characters whose age is below the threshold value. For each filtered character, create an <li> element with their name and append it to the target list. Call this function and render the results in the unordered list with id "age-filter-list".
+function renderCharactersBelowAge(charArray, ageThreshold) {
+  const targetList = document.getElementById("age-filter-list");
 
-// 5. Enhance your rendering functions from exercises 3 and 4 with error handling logic. Before accessing the name property of each character object, check whether the "name" property exists. If a character object is missing the name property, use console.error() to log a descriptive error message to the console, and dynamically create and display the error message in the HTML div element with id "error-messages".
+  targetList.innerHTML = "";
 
-// 6. Create a second array called "brokenCharacters" that intentionally contains objects with missing name properties (e.g., objects with only id and age). Pass this broken array to your error-handling functions from exercise 5. Verify that your error handling correctly identifies the missing name properties, logs appropriate error messages to the console, and displays those error messages in the HTML div element with id "broken-array-errors".
+  const filteredCharacters = charArray.filter(
+    character => character.age < ageThreshold);
+
+    filteredCharacters.forEach(character => {
+      if (character.name) {
+         const li = document.createElement("li");
+         li.textContent = character.name;
+         targetList.appendChild(li);
+      } else {
+            console.log("Character object missing name: ", character);
+      }
+  });
+}
+
+renderCharactersBelowAge(characters, 25);
+
+// 5. Enhance your rendering functions from exercises 3 and 4 with error handling logic. Before accessing the name property of each character object, check whether the "name" property exists. 
+// If a character object is missing the name property, use console.error() to log a descriptive error message to the console, 
+// and dynamically create and display the error message in the HTML div element with id "error-messages".
+
+function renderWithErrorHandling(charArray) {
+  const list = document.getElementById("error-handling-list");
+  const errorDiv = document.getElementById("error-messages");
+
+  if (!list || !errorDiv) return;
+
+  list.innerHTML = "";
+  errorDiv.innerHTML ="";
+
+  charArray.forEach(character => {
+    if (character.hasOwnProperty("name")) {
+      const li = document.createElement("li");
+      li.textContent = character.name;
+      list.appendChild(li);
+    } else {
+      
+      const p = document.createElement("p");
+      const message = `Error: Character with id ${character.id ?? "unknown"} is missing a name.`;
+      p.textContent = message;
+      p.style.color = "red";
+      errorDiv.appendChild(p);
+      console.error(message);
+
+      //console.log("Error!!!!");
+    }
+  });
+}
+const testCharacters = [
+  { id: 30, name: "Leon", age: 550 },
+  { id: 31, age: 660 },
+  { id: 32, age: 770 },
+];
+
+renderWithErrorHandling(testCharacters);
+
+// 6. Create a second array called "brokenCharacters" that intentionally contains objects with missing name properties (e.g., objects with only id and age). 
+// Pass this broken array to your error-handling functions from exercise 5. 
+// Verify that your error handling correctly identifies the missing name properties, logs appropriate error messages to the console, and displays those error messages in the HTML div element with id "broken-array-errors".
+const brokenCharacters = [
+  { id: 20, age: 29 },
+  { id: 21, age: 33 },
+  { id: 22, age: 44 },
+];
+
+function displayBrokenArrayError(message) {
+  console.error(message);
+
+  const errorDiv = document.getElementById("broken-array-errors");
+  if (!errorDiv) return;
+
+  const p = document.createElement("p");
+  p.textContent = message;
+  p.classList.add("error-message"); 
+  errorDiv.appendChild(p);
+}
+
+function renderBrokenCharacterList(charArray) {
+  const targetList = document.getElementById("broken-array-list");
+  const errorDiv = document.getElementById("broken-array-errors");
+
+  if (!targetList || !errorDiv) return;
+
+  targetList.innerHTML = ""; // clear previous results
+  errorDiv.innerHTML = "";   // clear previous errors
+
+  charArray.forEach(character => {
+    if (character.hasOwnProperty("name")) {
+      const li = document.createElement("li");
+      li.textContent = character.name;
+      targetList.appendChild(li);
+    } else {
+      displayBrokenArrayError(
+        `Error: Character with id ${character.id ?? "unknown"} is missing a name.`
+      );
+    }
+  });
+}
+
+renderBrokenCharacterList(brokenCharacters);
+
+/*function displayBrokenArrayError(message) {
+  console.error(message);
+
+  const errorDiv = document.getElementById("broken-array-errors");
+  if (!errorDiv) return;
+
+  const p = document.createElement("p");
+  p.textContent = message;
+
+  p.classList.add("error-message");
+  errorDiv.appendChild(p);
+}
+
+function renderBrokenCharacterList(charArray, targetId) {
+  const targetList = document.getElementById(targetId);
+  const errorDiv = document.getElementById("broken-array-errors");
+
+  if (!targetList || !errorDiv) return;
+
+  targetList.innerHTML = "";
+  errorDiv.innerHTML = "";
+
+  charArray.forEach(character => {
+    if (character.name) {
+      const li = document.createElement("li");
+      li.textContent = character.name;
+      targetList.appendChild(li);
+    } else {
+      displayBrokenArrayError(
+        `Error: Character with id ${character.id ?? "unknown"} is missing a name.`
+      );
+    }
+  });
+}
+
+renderBrokenCharacterList(brokenCharacters, "broken-array-list");
+*/
