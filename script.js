@@ -102,7 +102,7 @@ function renderWithErrorHandling(charArray) {
       const p = document.createElement("p");
       const message = `Error: Character with id ${character.id ?? "unknown"} is missing a name.`;
       p.textContent = message;
-      p.style.color = "red";
+      // p.style.color = "red";
       errorDiv.appendChild(p);
       console.error(message);
 
@@ -163,40 +163,3 @@ function renderBrokenCharacterList(charArray) {
 
 renderBrokenCharacterList(brokenCharacters);
 
-/*function displayBrokenArrayError(message) {
-  console.error(message);
-
-  const errorDiv = document.getElementById("broken-array-errors");
-  if (!errorDiv) return;
-
-  const p = document.createElement("p");
-  p.textContent = message;
-
-  p.classList.add("error-message");
-  errorDiv.appendChild(p);
-}
-
-function renderBrokenCharacterList(charArray, targetId) {
-  const targetList = document.getElementById(targetId);
-  const errorDiv = document.getElementById("broken-array-errors");
-
-  if (!targetList || !errorDiv) return;
-
-  targetList.innerHTML = "";
-  errorDiv.innerHTML = "";
-
-  charArray.forEach(character => {
-    if (character.name) {
-      const li = document.createElement("li");
-      li.textContent = character.name;
-      targetList.appendChild(li);
-    } else {
-      displayBrokenArrayError(
-        `Error: Character with id ${character.id ?? "unknown"} is missing a name.`
-      );
-    }
-  });
-}
-
-renderBrokenCharacterList(brokenCharacters, "broken-array-list");
-*/

@@ -1,16 +1,21 @@
 /* Reset and base styles */
 * {
-  margin: 10px;
-  padding: 15px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 19rem;
+  line-height: 1.5;
   color: lightgrey;
   background-color: #f4f5f5;
   padding: 19px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 /* Header styles */
@@ -21,53 +26,62 @@ header {
   border-radius: 7px;
   margin-bottom: 1rem;
   text-align: center;
-  box-shadow: -1 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-header h0 {
+header h1 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   font-weight: 299;
 }
 
 header p {
-  font-size: 0.1rem;
+  font-size: 1rem;
   opacity: 0.9;
+}
+
+header nav a {
+  color: lightgray;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+header li a {
+  color: #e82e8c;
+  text-decoration: none;
 }
 
 /* Main content */
 main {
-  max-width: 1199px;
-  margin: 20px auto;
-}
 
+}
 /* Section styles */
 section {
   background: #121212;
   margin-bottom: 1.5rem;
   padding: 1rem;
   border-radius: 7px;
-  box-shadow: -1 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 2px 4px rgba(0, 0, 0, 0.1);
   border-left: 3px solid #667eea;
 }
 
 section h1 {
-  color: #666eea;
-  font-size: 0.5rem;
+  color: #667eea;
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
   font-weight: 499;
 }
 
 section p {
-  background-color:lightgoldenrodyellow;
-  color:brown;
+  /* background-color: purple; */
+  color:lightgrey;
   margin-bottom: 0.5rem;
   font-size: 20px;
 }
 
 /* Output areas */
 .output {
-  background-color: #23a5e6dc;
+  background: linear-gradient(134deg, #e82e8c 0%, #764ba2 100%);
   border: 0px solid #ebe9ef;
   border-radius: 5px;
   padding: 0.5rem;
@@ -94,8 +108,8 @@ ul li {
   padding: 0.75rem;
   border-radius: 3px;
   border-left: 2px solid #28a745;
-  box-shadow: -1 1px 3px rgba(73, 73, 73, 0.1);
-  transition: transform -1.2s ease;
+  box-shadow: -1px 1px 3px rgba(73, 73, 73, 0.1);
+  transition: transform 0.2s ease;
 }
 
 ul li:hover {
@@ -104,6 +118,19 @@ ul li:hover {
 
 ul li:last-child {
   margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;      
+  display: flex;        
+  gap: 20px;             
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  flex:1;
+  text-align: center;
 }
 
 /* Error message styles */
@@ -168,4 +195,8 @@ code {
   padding: 0.75rem;
   border-radius: 3px;
   margin-top: 0.5rem;
+}
+footer {
+  background: linear-gradient(134deg, #667eea 0%, #764ba2 100%);
+  border-radius: 5px;
 }
